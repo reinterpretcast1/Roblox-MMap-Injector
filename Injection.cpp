@@ -94,6 +94,8 @@ int InjectionDllCaller() {
 		uintptr_t offset_SetInsert = 0xE15010;
 		uintptr_t offset_WhitelistedPages = 0x2730A8;
 		uintptr_t offset_Bitmap = 0x2750F8;
+		uintptr_t pageHash = 0x1BCEC215;
+		uintptr_t byteHash = 0x6B;
 
 		auto SetInsert = (TSetInsert)(hyperionBase + offset_SetInsert);
 		void* whitelistedPages = (void*)(hyperionBase + offset_WhitelistedPages);
@@ -114,8 +116,8 @@ int InjectionDllCaller() {
 		uint64_t Page = page & 0xfffffffffffff000;
 		uint64_t Page2 = page & 0xFFFF0000;
 
-		*reinterpret_cast<uint32_t*>(&_) = (Page >> 0xc) ^ 0x1BCEC215;
-		*reinterpret_cast<uint8_t*>(&_.Byte4) = ((Page >> 0x2c) & 0xFF) ^ 0x6B;
+		*reinterpret_cast<uint32_t*>(&_) = (Page >> 0xc) ^ pageHash;
+		*reinterpret_cast<uint8_t*>(&_.Byte4) = ((Page >> 0x2c) & 0xFF) ^ byteHash;
 
 
 		SetInsert(whitelistedPages, &Null, &_);
