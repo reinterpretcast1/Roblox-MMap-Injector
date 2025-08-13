@@ -90,12 +90,12 @@ int InjectionDllCaller() {
 	auto WhitelistPage = [](uintptr_t page) {
 		uintptr_t hyperionBase = (uintptr_t)GetModuleHandleA("RobloxPlayerBeta.dll");
 
-		// version-ff05edc617954c5b
-		uintptr_t offset_SetInsert = 0xE15010;
-		uintptr_t offset_WhitelistedPages = 0x2730A8;
-		uintptr_t offset_Bitmap = 0x2750F8;
-		uintptr_t pageHash = 0x1BCEC215;
-		uintptr_t byteHash = 0x6B;
+		// version-3f74e22590714de4 -- latest roblox version
+		uintptr_t offset_SetInsert = 0xB28800;
+		uintptr_t offset_WhitelistedPages = 0x253884;
+		uintptr_t offset_Bitmap = 0x254E20;
+		uintptr_t pageHash = 0xd252ed77;
+		uintptr_t byteHash = 0x99;
 
 		auto SetInsert = (TSetInsert)(hyperionBase + offset_SetInsert);
 		void* whitelistedPages = (void*)(hyperionBase + offset_WhitelistedPages);
